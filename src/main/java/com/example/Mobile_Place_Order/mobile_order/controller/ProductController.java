@@ -5,6 +5,8 @@ import com.example.Mobile_Place_Order.mobile_order.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,7 +18,9 @@ public class ProductController {
 
     // Get all products with paging
     @GetMapping
-    public Page<Product> getAllProducts(Pageable pageable) {
+    public Page<Product> getAllProducts(
+            @PageableDefault(size = 5, sort = "name", direction = Sort.Direction.ASC)
+            Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
