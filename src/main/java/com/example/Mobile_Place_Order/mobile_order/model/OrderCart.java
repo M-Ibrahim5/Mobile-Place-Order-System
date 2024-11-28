@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "order_cart")
 public class OrderCart {
 
     @Id
@@ -12,11 +13,22 @@ public class OrderCart {
     private Long id;
 
     private String customerName;
+    private String customerAddress;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "orderCart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderCartItem> items = new ArrayList<>();
 
-    // Getters and Setters
+    @Version
+    private Integer version;
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -31,6 +43,14 @@ public class OrderCart {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
     }
 
     public List<OrderCartItem> getItems() {
