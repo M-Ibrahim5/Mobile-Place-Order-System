@@ -1,4 +1,4 @@
-package com.example.Mobile_Place_Order.Mobile_Place_Order_System;
+package com.example.Mobile_Place_Order.mobile_order;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
