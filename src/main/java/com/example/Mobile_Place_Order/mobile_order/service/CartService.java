@@ -73,10 +73,11 @@ public class CartService {
         double total = cart.getItems().stream()
                 .mapToDouble(CartItem::getLinePrice)
                 .sum();
-        cart.setTotal(total); // Ensure total is set in the Cart object
+        cart.setTotal(total);
 
         return cart;
     }
+
 
 
 }

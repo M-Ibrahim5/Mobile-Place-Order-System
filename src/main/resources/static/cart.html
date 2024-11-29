@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Cart</title>
-    <link rel="stylesheet" href="cart.css"> <!-- Add your own styles if needed -->
+    <link rel="stylesheet" href="cart.css">
 </head>
 <body>
 <h1>Cart</h1>
@@ -18,15 +18,23 @@
     </tr>
     </thead>
     <tbody id="cart-items-body">
-    <!-- Cart items will be dynamically added here -->
+
     </tbody>
 </table>
 <div id="cart-total">
     <strong>Total: RM <span id="total-price">0.00</span></strong>
 </div>
+
+<div style="display: flex;
+  align-items: center;
+  justify-content: center;
+">
 <button id="checkout-button">Proceed to Checkout</button>
 <button id="continue-shopping-button">Continue Shopping</button>
+</div>
 
-<script src="cart.js"></script> <!-- Link to your cart.js file -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="cart.js"></script>
 </body>
 </html>
