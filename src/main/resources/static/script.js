@@ -55,6 +55,6 @@ $(document).ready(function() {
 
     // View Cart button functionality
     $('#viewCartButton').on('click', function() {
-        window.location.href = '/Cart.html'; // Redirect to the cart page
+        window.location.href = '/cart.html'; // Redirect to the cart page
     });
 });

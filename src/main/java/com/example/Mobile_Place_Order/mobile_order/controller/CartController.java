@@ -34,8 +34,8 @@ public class CartController {
     @GetMapping("/{cartId}")
     public ResponseEntity<?> getCart(@PathVariable Long cartId) {
         try {
-            Cart cart = cartService.getCartById(cartId); // Fetch cart with updated line price and total
-            return ResponseEntity.ok(cart); // Return cart with line price and total
+            Cart cart = cartService.getCartById(cartId);
+            return ResponseEntity.ok(cart); // This includes items and total
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }

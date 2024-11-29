@@ -4,23 +4,23 @@ $(document).ready(function() {
     // Fetch cart details from the API
     function loadCart() {
         $.ajax({
-            url: `/cart/${cartId}`, // Fetch cart items (updated to include line price)
+            url: `/cart/${cartId}`, // Fetch cart items
             method: 'GET',
             success: function(response) {
-                const cartItems = response.items; // Assuming the response contains items
-                const cartTotal = response.total; // Assuming the response includes the total amount
+                const cartItems = response.items; // Extract items array
+                const cartTotal = response.total; // Extract total
 
-                // Clear existing items
+                // Clear existing items in the table
                 const cartItemsBody = $('#cart-items-body');
                 cartItemsBody.empty();
 
-                // Loop through cart items and create table rows
+                // Loop through cart items and add rows to the table
                 cartItems.forEach(function(item) {
-                    const linePrice = item.linePrice; // Get line price directly from the response
+                    const linePrice = item.linePrice; // Get line price from response
                     const cartRow = `
                         <tr>
                             <td>${item.product.name}</td>
-                            <td>RM ${item.product.price}</td>
+                            <td>RM ${item.product.price.toFixed(2)}</td>
                             <td>${item.quantity}</td>
                             <td>RM ${linePrice.toFixed(2)}</td>
                         </tr>
@@ -31,22 +31,12 @@ $(document).ready(function() {
                 // Update total price
                 $('#total-price').text(cartTotal.toFixed(2));
             },
-            error: function() {
-                alert('Error loading cart');
+            error: function(xhr) {
+                alert('Error loading cart: ' + xhr.responseText);
             }
         });
     }
 
     // Load cart data when the page loads
     loadCart();
-
-    // Continue shopping button functionality (navigate back to product page or home page)
-    $('#continue-shopping-button').on('click', function() {
-        window.location.href = '/index.html'; // Redirect to homepage or product listing
-    });
-
-    // Checkout button functionality (you can link to checkout page here)
-    $('#checkout-button').on('click', function() {
-        window.location.href = '/checkout.html'; // Redirect to checkout page
-    });
 });

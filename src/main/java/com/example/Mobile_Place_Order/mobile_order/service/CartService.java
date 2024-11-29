@@ -64,18 +64,19 @@ public class CartService {
         Cart cart = cartRepository.findById(cartId)
                 .orElseThrow(() -> new RuntimeException("Cart not found for ID: " + cartId));
 
-        // Calculate line price for each item in the cart (product price * quantity)
+        // Calculate line price for each item
         for (CartItem item : cart.getItems()) {
-            item.setLinePrice(item.getProduct().getPrice() * item.getQuantity()); // Update the line price dynamically
+            item.setLinePrice(item.getProduct().getPrice() * item.getQuantity());
         }
 
-        // Calculate total for the cart
+        // Calculate total price
         double total = cart.getItems().stream()
-                .mapToDouble(CartItem::getLinePrice) // Sum the line prices
+                .mapToDouble(CartItem::getLinePrice)
                 .sum();
-        cart.setTotal(total); // Set total for the cart
+        cart.setTotal(total); // Ensure total is set in the Cart object
 
-        return cart; // Return updated cart with line prices
+        return cart;
     }
+
 
 }
