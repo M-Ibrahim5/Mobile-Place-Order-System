@@ -3,7 +3,7 @@ package com.example.Mobile_Place_Order.mobile_order.model;
 import jakarta.persistence.*;
 
 @Entity
-public class CartItem {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +14,15 @@ public class CartItem {
 
     private int quantity;
 
-    private double linePrice; // New field for line price
+    public OrderItem() {
+    }
 
-    // Getters and Setters
+    public OrderItem(Long id, Product product, int quantity) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+    }
+
     public Long getId() {
         return id;
     }
@@ -39,14 +45,5 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-        this.linePrice = product.getPrice() * quantity; // Calculate line price
-    }
-
-    public double getLinePrice() {
-        return linePrice;
-    }
-
-    public void setLinePrice(double linePrice) {
-        this.linePrice = linePrice;
     }
 }

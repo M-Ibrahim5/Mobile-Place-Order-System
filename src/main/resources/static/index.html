@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Cart</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Product List - Homepage</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your external CSS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- jQuery for AJAX -->
 </head>
 <body>
 <header>
-    <h1>Mobile Place Order System</h1>
+    <h1>Welcome to Senheng</h1>
+    <button id="viewCartButton">View Cart</button> <!-- Button to view cart -->
 </header>
 
-<main>
-    <section class="product-section">
-        <h2>Available Products</h2>
-        <div id="product-list" class="product-list"></div>
-    </section>
+<div id="product-list">
+    <!-- Product list will be dynamically populated by JS -->
+</div>
 
-    <section class="cart-section">
-        <h2>Your Cart</h2>
-        <div id="cart" class="cart-list"></div>
-    </section>
-</main>
-
-<script src="script.js"></script>
+<script src="script.js"></script> <!-- Link to your external JS -->
 </body>
 </html>

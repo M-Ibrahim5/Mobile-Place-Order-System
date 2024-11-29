@@ -3,16 +3,9 @@ package com.example.Mobile_Place_Order.mobile_order.controller;
 import com.example.Mobile_Place_Order.mobile_order.model.Product;
 import com.example.Mobile_Place_Order.mobile_order.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.PagedModel;
-import org.springframework.hateoas.server.reassembler.RepresentationModelAssembler;
-
-import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -21,14 +14,10 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private PagedResourcesAssembler<Product> pagedResourcesAssembler;
-
-    // Get all products with paging
+    // Get all products without paging
     @GetMapping
-    public PagedModel<EntityModel<Product>> getAllProducts(Pageable pageable) {
-        Page<Product> products = productRepository.findAll(pageable);
-        return pagedResourcesAssembler.toModel(products);
+    public List<Product> getAllProducts() {
+        return productRepository.findAll(); // Fetch all products
     }
 
     // Add a new product

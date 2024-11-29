@@ -1,53 +1,60 @@
-// Fetch and display products
-fetch('/products')
-    .then(response => response.json())
-    .then(data => {
-        const products = data._embedded.products; // Adjusted for HATEOAS response
-        const productList = document.getElementById('product-list');
-        products.forEach(product => {
-            const div = document.createElement('div');
-            div.className = 'product-card';
-            div.innerHTML = `
-                <h3>${product.name}</h3>
-                <p>Type: ${product.type}</p>
-                <p>Price: RM${product.price.toFixed(2)}</p>
-                <p>Stock: ${product.quantity}</p>
-                <button onclick="addToCart(${product.id}, 1)">Add to Cart</button>
-            `;
-            productList.appendChild(div);
+$(document).ready(function() {
+    // Fetch products from the API and display them on the homepage
+    function loadProducts() {
+        $.ajax({
+            url: '/products', // API endpoint to fetch products
+            method: 'GET',
+            success: function(response) {
+                const productList = $('#product-list');
+                productList.empty(); // Clear the product list
+
+                // Loop through the products and create HTML cards for each
+                response.forEach(function(product) {
+                    const productCard = `
+                        <div class="product-card">
+                            <h3>${product.name}</h3>
+                            <p>Price: ${product.price}</p>
+                            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        </div>
+                    `;
+                    productList.append(productCard);
+                });
+            },
+            error: function() {
+                alert('Error loading products');
+            }
         });
-    })
-    .catch(error => console.error('Error fetching products:', error));
+    }
 
-// Add product to cart
-function addToCart(productId, quantity) {
-    fetch(`/cart/1/add?productId=${productId}&quantity=${quantity}`, { method: 'POST' })
-        .then(() => {
-            alert('Product added to cart!');
-            loadCart();
-        })
-        .catch(error => console.error('Error adding to cart:', error));
-}
+    // Add product to cart
+    $(document).on('click', '.add-to-cart', function() {
+        const productId = $(this).data('id');
+        const quantity = 1; // Can be enhanced by adding a quantity field if needed
+        const cartId = 1; // Assuming you store the cartId in localStorage
 
-// Fetch and display cart
-function loadCart() {
-    fetch('/cart/1')
-        .then(response => response.json())
-        .then(cart => {
-            const cartDiv = document.getElementById('cart');
-            cartDiv.innerHTML = ''; // Clear existing items
-            cart.items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'cart-item';
-                div.innerHTML = `
-                    <h3>${item.product.name}</h3>
-                    <p>Quantity: ${item.quantity}</p>
-                `;
-                cartDiv.appendChild(div);
-            });
-        })
-        .catch(error => console.error('Error fetching cart:', error));
-}
+        if (!cartId) {
+            alert('Cart ID is missing. Please log in or start a new cart.');
+            return;
+        }
 
-// Load cart on page load
-loadCart();
+        // Pass productId and quantity as URL parameters
+        $.ajax({
+            url: `/cart/${cartId}/add?productId=${productId}&quantity=${quantity}`, // Add parameters to the URL
+            method: 'POST',
+            success: function() {
+                alert('Product added to cart');
+            },
+            error: function() {
+                alert('Error adding product to cart');
+            }
+        });
+    });
+
+    // Load products when the page loads
+    loadProducts();
+
+    // View Cart button functionality
+    $('#viewCartButton').on('click', function() {
+        window.location.href = '/Cart.html'; // Redirect to the cart page
+    });
+});
