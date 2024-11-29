@@ -24,13 +24,45 @@
 <div id="cart-total">
     <strong>Total: RM <span id="total-price">0.00</span></strong>
 </div>
-
-<div style="display: flex;
-  align-items: center;
-  justify-content: center;
-">
-<button id="checkout-button">Proceed to Checkout</button>
-<button id="continue-shopping-button">Continue Shopping</button>
+<div style="width: 60%; margin: auto;">
+    <div
+            style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px; /* Add space between buttons */
+            margin: 10px;
+        "
+    >
+        <button
+                id="continue-shopping-button"
+                style="
+                padding: 10px 20px; /* Add padding to the button */
+                font-size: 16px; /* Adjust font size */
+                background-color: #4caf50; /* Green background */
+                color: white; /* White text */
+                border: none;
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer;
+            "
+        >
+            Continue Shopping
+        </button>
+        <button
+                id="checkout-button"
+                style="
+                padding: 10px 20px; /* Add padding to the button */
+                font-size: 16px; /* Adjust font size */
+                background-color: #4caf50; /* Green background */
+                color: white; /* White text */
+                border: none;
+                border-radius: 5px; /* Rounded corners */
+                cursor: pointer;
+            "
+        >
+            Checkout
+        </button>
+    </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
