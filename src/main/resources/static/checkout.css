@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+#checkout-details {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#place-order-button, #back-to-cart-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#place-order-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+
+#place-order-button:hover {
+    background-color: #45a049;
+}
+
+#back-to-cart-button {
+    background-color: #ddd;
+    color: black;
+    border: none;
+}
+
+#back-to-cart-button:hover {
+    background-color: #ccc;
+}
